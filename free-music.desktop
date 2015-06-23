@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Free-Music
+Icon=/opt/free-music/Music.png
+Exec=/opt/free-music/free-music
+Terminal=false
+Type=Application
