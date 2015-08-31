@@ -28,7 +28,7 @@ clean:
 	-rm free-music *.o
 
 install: free-music
-	chown `whoami` /opt \
+	@chown `whoami` /opt \
 	mkdir -p $(INSTALLDIR); \
 	mkdir -p $(INSTALLDIR)/etc; \
 	mkdir -p $(INSTALLDIR)/etc/lists.d; \
@@ -44,7 +44,7 @@ install: free-music
 
 
 uninstall:
-	rm -rf $(INSTALLDIR); \
+	@rm -rf $(INSTALLDIR); \
 	rm -f $(DESKTOPDIR)/free-music.desktop; \
 	if [ -d $(INSTALLDIR) ]; \
 		then \
