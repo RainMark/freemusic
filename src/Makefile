@@ -28,15 +28,15 @@ clean:
 	-rm free-music *.o
 
 install: free-music
-	@chown `whoami` /opt \
-	mkdir -p $(INSTALLDIR); \
+	@mkdir -p $(INSTALLDIR); \
 	mkdir -p $(INSTALLDIR)/etc; \
 	mkdir -p $(INSTALLDIR)/etc/lists.d; \
-	cp free-music $(INSTALLDIR); \
-	cp *.png $(INSTALLDIR); \
-	cp free-music.desktop $(DESKTOPDIR); \
+	cp ../src/free-music $(INSTALLDIR); \
+	cp ../resources/*.png $(INSTALLDIR); \
+	cp ../icon/free-music.desktop $(DESKTOPDIR); \
 	if [ -d $(INSTALLDIR) ]; \
 		then \
+		chown -R `whoami` $(INSTALLDIR); \
 		echo "Complete!"; \
 	else \
 		echo "Not complete!!!"; \
@@ -51,4 +51,4 @@ uninstall:
 		echo "Not Complete!"; \
 	else \
 		echo "Complete!!!"; \
-	fi
+	fi 
