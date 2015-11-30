@@ -5,7 +5,7 @@
 ## Install
 ` $ cd src/ && sudo make install `
 ## Uninstall
-` $cd /src/ && sudo make uninstall `
+` $ cd /src/ && sudo make uninstall `
 ## Depends
 + GTK 2 , GTK 3
 + Gstreamer , Gstreamer bad plugins etc.
