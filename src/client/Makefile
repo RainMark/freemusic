@@ -1,4 +1,4 @@
-INSTALLDIR = /opt/free-music
+INSTALLDIR = /tmp/free-music
 
 DESKTOPDIR = ~/.local/share/applications
 
@@ -6,21 +6,21 @@ CC ?= gcc
 
 PKG_CONFIG = $(shell which pkg-config)
 
-CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-2.0 gstreamer-0.10)
+CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient
 
-LIBS = $(shell $(PKG_CONFIG) --libs gtk+-2.0 gstreamer-0.10)
+LIBS = $(shell $(PKG_CONFIG) --libs gtk+-3.0) -lmysqlclient
 
-SRC = main.c player.c scan-mp3.c list.c
+SRC = main.c player.c list.c api.c client.c search.c
 
 OBJS = $(SRC:.c=.o)
 
 all: free-music
 
 %.o: %.c
-	$(CC) -c $< $(CFLAGS) -o $(@F)
+	$(CC) -c -rdynamic $< $(CFLAGS) -o $(@F)
 
 free-music: $(OBJS)
-	$(CC) $(LIBS) $(OBJS) -o $(@F)
+	$(CC) -rdynamic $(LIBS) $(OBJS) -o $(@F)
 
 .PHONY: clean install uninstall
 
