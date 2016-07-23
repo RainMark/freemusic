@@ -17,10 +17,10 @@ OBJS = $(SRC:.c=.o)
 all: free-music
 
 %.o: %.c
-	$(CC) -c -rdynamic $< $(CFLAGS) -o $(@F)
+	$(CC) -c $< $(CFLAGS) -rdynamic -o $(@F)
 
 free-music: $(OBJS)
-	$(CC) -rdynamic $(LIBS) $(OBJS) -o $(@F)
+	$(CC) $(OBJS) $(LIBS) -rdynamic -o $(@F)
 
 .PHONY: clean install uninstall
 
