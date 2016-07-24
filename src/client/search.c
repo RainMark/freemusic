@@ -77,7 +77,7 @@ void search_song_show(struct song_st *sst, int n)
 
 	for (i = 0; i < n; i++) {
 		gtk_list_store_append(search_store, &iter);
-		gtk_list_store_set(search_store, &iter, 0, sst->name, 1, sst->singer_name, 2, sst->style, 3, sst->id, -1);
+		gtk_list_store_set(search_store, &iter, 0, sst[i].name, 1, sst[i].singer_name, 2, sst[i].style, 3, sst[i].id, -1);
 	}
 	gtk_tree_view_set_model(GTK_TREE_VIEW(search_view), GTK_TREE_MODEL(search_store));
 }
