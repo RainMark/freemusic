@@ -1,0 +1,80 @@
+#+title: Free-Music v1.3
+Free Music (FM) is a open source music player. It's a local mp3 player before version 3.
+In version 3, we cut the local play function.Finally, it became to a online music player.
+The development of FM is very slow, we hope more and more programmers can get involved in this project.
+Below is a introdution of this project, I hope that it is usefull.
+
+* Get source code
+#+BEGIN_SRC shell
+git clone https://github.com/RainMark/Free-Music.git
+#+END_SRC
+\\
+Project Directory Tree
+|-- LICENSE
+|-- README.org
+|-- resources
+|   `-- free-music.ui
+`-- src
+    |-- client            source of client.
+    |   |-- api.c
+    |   |-- api.h
+    |   |-- client.c
+    |   |-- client.h
+    |   |-- free-music.css
+    |   |-- get.sh
+    |   |-- list.c
+    |   |-- list.h
+    |   |-- main.c
+    |   |-- main.h
+    |   |-- Makefile
+    |   |-- player.c
+    |   |-- player.h
+    |   |-- search.c
+    |   `-- search.h
+    |-- db               databses init scripts and test data.
+    |   |-- init.sql
+    |   `-- insert.sql
+    |-- include
+    |   |-- common.h
+    |   `-- get.sh
+    `-- server           source of server.
+        |-- Makefile
+        |-- server.c
+        |-- server.h
+        |-- sql.c
+        `-- sql.h
+
+* Setup Development Environment
+- Prepare a linux system like ubuntu 16.04
+- Install GTK3 dev and mysqlclient dev library.
+#+BEGIN_SRC shell
+sudo apt-get install libgtk-3-dev libmysqlclient-dev mpg123
+#+END_SRC
+- Install mysql server to test code.
+#+BEGIN_SRC shell
+sudo apt-get install mysql-server
+#+END_SRC
+- Create FM test table and insert the test data.
+#+BEGIN_SRC shell
+cd Free-Music/src/db
+mysql -u root -p
+#+END_SRC
+#+BEGIN_SRC sql
+\. init.sql
+\. insert.sql
+#+END_SRC
+- Test environment. (It's ok if compile successfully)
+#+BEGIN_SRC shell
+cd ../client
+make
+#+END_SRC
+
+* Start To Develop
+- Folow this link to start quickly.
+http://www.cnblogs.com/rain-blog/p/gtk3-1.html
+- Read the other source code.
+- Modify this project.
+
+* Developer
+- Rain          : rain.by.zhou@gmail.com \\
+- EggRoll       : 13924786328@139.com
