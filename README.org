@@ -1,4 +1,4 @@
-#+title: Free-Music v1.3
+#+title: Free-Music
 Free Music (FM) is a open source music player. It's a local mp3 player before version 3.In version 3, we cut the local play function.Finally, it became to a online music player.
 The development of FM is very slow, we hope more and more programmers can get involved in this project.
 Below is a introdution of this project, I hope that it is usefull.
