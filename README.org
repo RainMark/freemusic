@@ -1,6 +1,5 @@
 #+title: Free-Music v1.3
-Free Music (FM) is a open source music player. It's a local mp3 player before version 3.
-In version 3, we cut the local play function.Finally, it became to a online music player.
+Free Music (FM) is a open source music player. It's a local mp3 player before version 3.In version 3, we cut the local play function.Finally, it became to a online music player.
 The development of FM is very slow, we hope more and more programmers can get involved in this project.
 Below is a introdution of this project, I hope that it is usefull.
 
@@ -10,12 +9,13 @@ git clone https://github.com/RainMark/Free-Music.git
 #+END_SRC
 \\
 Project Directory Tree
+#+BEGIN_SRC txt
 |-- LICENSE
 |-- README.org
 |-- resources
 |   `-- free-music.ui
 `-- src
-    |-- client            source of client.
+    |-- client                      <------------ source of client.
     |   |-- api.c
     |   |-- api.h
     |   |-- client.c
@@ -31,19 +31,19 @@ Project Directory Tree
     |   |-- player.h
     |   |-- search.c
     |   `-- search.h
-    |-- db               databses init scripts and test data.
+    |-- db                          <------------- databses init scripts and test data.
     |   |-- init.sql
     |   `-- insert.sql
     |-- include
     |   |-- common.h
-    |   `-- get.sh
-    `-- server           source of server.
+    |   
+    `-- server                     <-------------- source of server.
         |-- Makefile
         |-- server.c
         |-- server.h
         |-- sql.c
         `-- sql.h
-
+#+END_SRC
 * Setup Development Environment
 - Prepare a linux system like ubuntu 16.04
 - Install GTK3 dev and mysqlclient dev library.
@@ -70,8 +70,8 @@ make
 #+END_SRC
 
 * Start To Develop
-- Folow this link to start quickly.
-http://www.cnblogs.com/rain-blog/p/gtk3-1.html
+- Folow this link to start quickly.\\
+  http://www.cnblogs.com/rain-blog/p/gtk3-1.html
 - Read the other source code.
 - Modify this project.
 
