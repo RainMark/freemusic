@@ -4,12 +4,9 @@ The development of FM is very slow, we hope more and more programmers can get in
 Below is a introdution of this project, I hope that it is usefull.
 
 * Overview
-[[./pic/fm-main.png]]\\
-\\
-[[./pic/fm-serarch.png]]\\
-\\
-[[./pic/fm-like.png]]\\
-\\
+[[./pic/fm-main.png]]
+[[./pic/fm-serarch.png]]
+[[./pic/fm-like.png]]
 [[./pic/fm-add.png]]
 * Get source code
 #+BEGIN_SRC shell
