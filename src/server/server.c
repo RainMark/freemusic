@@ -51,10 +51,7 @@ void do_communication(int sd)
 		exit(-1);
 
 	while (1) {
-		/* memset(msg, 0, sizeof (struct message)); */
-		/* ret = read(cd, msg, BUF_SIZE); */
 		ret = recvfrom(server, msg, BUF_SIZE, 0, (struct sockaddr *)&client_addr, &client_addr_len);
-		/* printf("Type:%d Len:%d\n", msg->type, ret); */
 		if (!msg->type)
 			goto no_data;
 
@@ -97,7 +94,6 @@ void user_login(struct message *msg, int m_len)
 	char id[ID_LEN + 1];
 	int len;
 
-	/* printf("Login\n"); */
 	strncpy(id, msg->data, ID_LEN);
 	id[ID_LEN] = '\0';
 	len =m_len - TYPE_LEN - ID_LEN;
@@ -105,17 +101,15 @@ void user_login(struct message *msg, int m_len)
 	passwd[len] = '\0';
 
 	sql_get_user_passwd(id, pass);
-	/* printf("user_login:%s\n", pass); */
-	/* printf("user_login:%s\n", passwd); */
 	if (!strlen(pass)) {
-		send_one_message_to_client("invalid user id!", LOGIN_FAILED);
+		send_one_message_to_client("invalid user id!\n", LOGIN_FAILED);
 		return;
 	}
 
 	if (!strcmp(passwd, pass))
-		send_one_message_to_client("Login successful!", LOGIN_SUCCESS);
+		send_one_message_to_client("Login successful!\n", LOGIN_SUCCESS);
 	else
-		send_one_message_to_client("Password failed!", LOGIN_FAILED);
+		send_one_message_to_client("Password failed!\n", LOGIN_FAILED);
 
 }
 
@@ -130,11 +124,9 @@ void get_list(struct message *msg, int m_len)
 
 	strncpy(uid, msg->data, ID_LEN);
 	uid[ID_LEN] = '\0';
-	/* printf("get_list():%s\n", uid); */
 	sql_send_list(uid);
 
 	m->type = END;
-	/* write(client, m, TYPE_LEN + ID_LEN); */
 	sendto(server, m, TYPE_LEN, 0, (struct sockaddr *)&client_addr, client_addr_len);
 
 	free(m);
@@ -170,7 +162,7 @@ void new_list(struct message *msg, int m_len)
 	sscanf(buf + ID_LEN + 1, "%[^\n]", lname);
 	printf("%s %s\n", uid, lname);
 	sql_new_list(uid, lname);
-	send_one_message_to_client("New Successful!", ADD_LIST_SUCCESS);
+	send_one_message_to_client("New Successful!\n", ADD_LIST_SUCCESS);
 }
 
 void rm_list(struct message *msg, int m_len)
@@ -180,7 +172,7 @@ void rm_list(struct message *msg, int m_len)
 	strncpy(lid, msg->data, ID_LEN);
 	lid[ID_LEN] = '\0';
 	sql_rm_list(lid);
-	send_one_message_to_client("Remove Successful!", DELETE_LIST_SUCCESS);
+	send_one_message_to_client("Remove Successful!\n", DELETE_LIST_SUCCESS);
 }
 
 void add_song_to_list(struct message *msg, int m_len)
@@ -193,7 +185,7 @@ void add_song_to_list(struct message *msg, int m_len)
 	sscanf(buf, "%s%s", lid, sid);
 	printf("%s", buf);
 	sql_add_song_to_list(lid, sid);
-	send_one_message_to_client("Add to Successful!", ADD_SONG_SUCCESS);
+	send_one_message_to_client("Add to Successful!\n", ADD_SONG_SUCCESS);
 }
 
 
@@ -207,7 +199,7 @@ void search_song(struct message *msg, int m_len)
 	strncpy(txt, msg->data, m_len - TYPE_LEN);
 	txt[m_len - TYPE_LEN] = '\0';
 	sql_search_song(txt);
-	send_one_message_to_client("Search Successful!", END);
+	send_one_message_to_client("Search Successful!\n", END);
 }
 
 
@@ -223,7 +215,7 @@ void send_one_message_to_client(const char *str, int type)
 
 	m->type = type;
 	strcpy(m->data, str);
-	sendto(server, m, strlen(str) + TYPE_LEN, 0, (struct sockaddr *)&client_addr, client_addr_len);
+	sendto(server, m, BUF_SIZE, 0, (struct sockaddr *)&client_addr, client_addr_len);
 
 	free(m);
 }

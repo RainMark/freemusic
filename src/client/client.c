@@ -252,7 +252,7 @@ int new_online_list(const char *name)
 	m->type = ADD_LIST;
 	strcpy(m->data, buf);
 
-	ret = sendto(server, m, BUF_SIZE, 0, (struct sockaddr *)&server_addr, addr_len);
+	sendto(server, m, BUF_SIZE, 0, (struct sockaddr *)&server_addr, addr_len);
 
 	ret = recvfrom(server, m, BUF_SIZE, 0, (struct sockaddr *)&server_addr, &addr_len);
 	strncpy(buf, m->data, ret - TYPE_LEN);
@@ -279,7 +279,7 @@ int rm_online_list(const char *id)
 
 	m->type = DELETE_LIST;
 	sprintf(m->data, "%s\n", id);
-	ret = sendto(server, m, ID_LEN + TYPE_LEN + 1, 0, (struct sockaddr *)&server_addr, addr_len);
+	sendto(server, m, ID_LEN + TYPE_LEN + 1, 0, (struct sockaddr *)&server_addr, addr_len);
 
 	ret = recvfrom(server, m, BUF_SIZE, 0, (struct sockaddr *)&server_addr, &addr_len);
 	strncpy(buf, m->data, ret - TYPE_LEN);

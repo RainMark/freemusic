@@ -110,6 +110,10 @@ CREATE TABLE IF NOT EXISTS `free_music`.`songs_of_lists` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- Setup list trigger.
+delimiter //
+CREATE TRIGGER fm_trigger BEFORE delete ON list FOR EACH ROW delete from songs_of_lists where songs_of_lists.list_id=old.list_id;//
+delimiter ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
