@@ -3,7 +3,7 @@
 
 int server = 0;
 int online = 0;
-static char SERVER_IP[32] = "172.23.21.34";
+static char SERVER_IP[32] = "192.168.12.192";
 struct sockaddr_in server_addr;
 unsigned int addr_len = 0;
 char currnet_uid[ID_LEN + 1];
@@ -88,10 +88,10 @@ int sync_online_list_all(void)
 
 int clicked_login(GtkWidget *bt, gpointer data)
 {
-	const char *id = "0000000002";
-	const char *passwd = "user2_passwd";
+	const char *id = "0000000001";
+	const char *passwd = "rain";
 
-	printf("Clicked login!\n");
+	/* printf("Clicked login!\n"); */
 	if (online)
 		return 1;
 
@@ -206,7 +206,7 @@ int fetch_online_song(const char *lid, struct song_st *sst)
 		len = ret - TYPE_LEN - ID_LEN;
 		strncpy(buf, m->data + ID_LEN, len);
 		buf[len] = '\0';
-		sscanf(buf, "%[^\n]%s%s%s%s", sst[i].name, sst[i].style, sst[i].type, sst[i].singer_id);
+		sscanf(buf, "%[^\n]%s%s%s", sst[i].name, sst[i].style, sst[i].type, sst[i].singer_id);
 		strcpy(sst[i].path, sst[i].id);
 		/* printf("%s %s %s %s %s %s\n", sst[i].id, sst[i].name, sst[i].style, sst[i].type, sst[i].singer_id, sst[i].path); */
 
@@ -348,7 +348,7 @@ int fetch_song(const char *id)
 	int ret;
 	char *server_user = "rain";
 	char *server_pass = "zby2010";
-	char *server_dir = "music_data";
+	char *server_dir = "~/flib";
 	char *cache_dir = "/tmp";
 
 	sprintf(buf, "%s/%s", cache_dir, id);
