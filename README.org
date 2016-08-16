@@ -75,9 +75,9 @@ Project Directory Tree
 #+BEGIN_SRC shell
 sudo apt-get install libgtk-3-dev libmysqlclient-dev mpg123 git
 #+END_SRC
-- Install mysql server to test code.
+- Install mysql/ftp server to test code.
 #+BEGIN_SRC shell
-sudo apt-get install mysql-server
+sudo apt-get install mysql-server vsftpd
 #+END_SRC
 - Create FM test table and insert the test data.
 #+BEGIN_SRC shell
