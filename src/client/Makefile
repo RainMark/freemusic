@@ -23,6 +23,7 @@ all: free-music
 free-music: $(OBJS)
 	@$(CC) $(OBJS) $(LIBS) -rdynamic -o $(@F)
 	@echo "ld $(OBJS) -o $@"
+	@chmod a+x get.sh
 
 .PHONY: clean install uninstall
 
