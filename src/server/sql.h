@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <mysql/mysql.h>
-#include "../include/common.h"
+#include <common.h>
 #include "server.h"
 
 
 #define HOST ("localhost")
 #define USER ("root")
-#define PASSWORD ("zby2010")
+#define PASSWORD ("root")
 #define DATABASE ("free_music")
 
 int sql_init(void);

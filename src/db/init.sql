@@ -40,7 +40,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `free_music`.`song` ;
 
 CREATE TABLE IF NOT EXISTS `free_music`.`song` (
-  `song_id` CHAR(10) NULL,
+  `song_id` CHAR(10) NOT NULL,
   `song_name` VARCHAR(512) NOT NULL,
   `song_path` VARCHAR(512) NULL,
   `song_ftype` VARCHAR(45) NULL,

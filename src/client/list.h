@@ -3,7 +3,7 @@
 #define _list
 
 #include <gtk/gtk.h>
-#include "../include/common.h"
+#include <common.h>
 #include "client.h"
 
 struct _songlist {

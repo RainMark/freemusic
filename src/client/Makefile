@@ -6,7 +6,7 @@ CC ?= gcc
 
 PKG_CONFIG = $(shell which pkg-config)
 
-CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient
+CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient -I../include
 
 LIBS = $(shell $(PKG_CONFIG) --libs gtk+-3.0) -lmysqlclient
 

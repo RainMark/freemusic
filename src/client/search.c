@@ -3,7 +3,7 @@
 #include "player.h"
 #include "client.h"
 #include "search.h"
-#include "../include/common.h"
+#include <common.h>
 
 GtkWidget *search_entry;
 GtkWidget *search_view;

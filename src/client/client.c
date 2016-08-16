@@ -3,7 +3,7 @@
 
 int server = 0;
 int online = 0;
-static char SERVER_IP[32] = "192.168.12.192";
+static char SERVER_IP[32] = "127.0.0.1";
 struct sockaddr_in server_addr;
 unsigned int addr_len = 0;
 char currnet_uid[ID_LEN + 1];
@@ -88,20 +88,80 @@ int sync_online_list_all(void)
 
 int clicked_login(GtkWidget *bt, gpointer data)
 {
-	const char *id = "0000000001";
-	const char *passwd = "rain";
+	GtkWidget *dialog = NULL;
+	GtkWidget *dialog_area;
+	GtkWidget *vbox, *hbox;
+	gint result;
+	GtkWidget *user_entry;
+	GtkWidget *pass_entry;
+	GtkWidget *label;
+	const gchar *user = NULL;
+	const gchar *pass = NULL;
 
-	/* printf("Clicked login!\n"); */
-	if (online)
-		return 1;
+	dialog = gtk_dialog_new_with_buttons("Login" , GTK_WINDOW(window) ,
+				GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT ,
+				"_OK", GTK_RESPONSE_OK,
+				"_Cancel", GTK_RESPONSE_CANCEL,
+				NULL);
 
-	if(!login(id, passwd)) {
-		strcpy(currnet_uid, id);
-		list_store_clear_all();
-		return sync_online_list_all();
-	} else {
-		return 1;
+	dialog_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+
+	vbox = gtk_box_new( GTK_ORIENTATION_VERTICAL , 0 );
+
+	user_entry  = gtk_entry_new();
+	label  = gtk_label_new("User : ");
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 10);
+	gtk_box_pack_start(GTK_BOX(hbox), user_entry, TRUE, TRUE, 10);
+	gtk_box_pack_start(GTK_BOX( vbox ) , hbox , TRUE ,TRUE , 10);
+
+	pass_entry  = gtk_entry_new();
+	label  = gtk_label_new("Pass : ");
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 10);
+	gtk_box_pack_start(GTK_BOX(hbox), pass_entry, TRUE, TRUE, 10);
+	gtk_box_pack_start(GTK_BOX( vbox ) , hbox , TRUE, TRUE, 10);
+
+	gtk_widget_set_size_request(dialog , 250 , 150);
+	gtk_box_pack_start (GTK_BOX(dialog_area), vbox, FALSE, FALSE, 0);
+	gtk_container_set_border_width(GTK_CONTAINER(vbox), 15);
+	gtk_widget_show_all(dialog);
+
+	while (!online) {
+		result = gtk_dialog_run(GTK_DIALOG(dialog));
+		if (GTK_RESPONSE_OK != result) {
+			goto do_release;
+		}
+
+		if (ID_LEN != gtk_entry_get_text_length(GTK_ENTRY(user_entry))) {
+			gtk_entry_set_text(GTK_ENTRY(user_entry), "Invalid length");
+			continue;
+		}
+
+		if (!gtk_entry_get_text_length(GTK_ENTRY(pass_entry))) {
+			gtk_entry_set_text(GTK_ENTRY(pass_entry), "Invalid length");
+			continue;
+		}
+
+		user = gtk_entry_get_text(GTK_ENTRY(user_entry));
+		pass = gtk_entry_get_text(GTK_ENTRY(pass_entry));
+		printf("User: %s\n", user);
+		printf("Pass: %s\n", pass);
+		if(!login(user, pass)) {
+			strcpy(currnet_uid, user);
+			list_store_clear_all();
+			sync_online_list_all();
+			goto do_release;
+		} else {
+			gtk_entry_set_text(GTK_ENTRY(user_entry), "Login failed!");
+			gtk_entry_set_text(GTK_ENTRY(pass_entry), "Login failed!");
+		}
 	}
+
+do_release:
+	gtk_widget_destroy(dialog);
+	dialog = NULL;
+	return 1;
 }
 
 int fetch_online_list(const char *uid, struct list_st *list)

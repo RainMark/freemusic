@@ -1,7 +1,7 @@
 #ifndef __CLIENT_H
 #define __CLIENT_H
 
-#include "../include/common.h"
+#include <common.h>
 #include "list.h"
 
 extern int server;

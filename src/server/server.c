@@ -1,6 +1,5 @@
-#include "../include/common.h"
-#include "sql.h"
 #include "server.h"
+#include "sql.h"
 
 int server;
 struct sockaddr_in client_addr;

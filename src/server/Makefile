@@ -1,5 +1,5 @@
 CC ?= gcc
-CFLAGS += -lmysqlclient
+CFLAGS += -lmysqlclient -I../include
 
 SRC = server.c sql.c
 OBJS = server.o sql.o

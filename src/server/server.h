@@ -1,6 +1,6 @@
 #ifndef __SERVER_H
 #define __SERVER_H
-#include "../include/common.h"
+#include <common.h>
 
 extern int server;
 extern struct sockaddr_in client_addr;
