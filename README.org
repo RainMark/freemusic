@@ -4,11 +4,11 @@ The development of FM is very slow, we hope more and more programmers can get in
 Below is a introduction of this project, I hope that it is usefull.
 
 * Overview
-[[./pic/fm-main.png]]
-[[./pic/fm-serarch.png]]
-[[./pic/fm-like.png]]
-[[./pic/fm-add.png]]
-[[./pic/fm-login.png]]
+[[./pic/login.png]]
+[[./pic/play.png]]
+[[./pic/find.png]]
+[[./pic/like.png]]
+[[./pic/addto.png]]
 * Get source code
 #+BEGIN_SRC shell
 git clone https://github.com/RainMark/Free-Music.git
