@@ -16,39 +16,58 @@ git clone https://github.com/RainMark/Free-Music.git
 \\
 Project Directory Tree
 #+BEGIN_SRC txt
-|-- LICENSE
-|-- README.org
-|-- resources
-|   `-- free-music.ui
-`-- src
-    |-- client                      <------------ source of client.
-    |   |-- api.c
-    |   |-- api.h
-    |   |-- client.c
-    |   |-- client.h
-    |   |-- free-music.css
-    |   |-- get.sh
-    |   |-- list.c
-    |   |-- list.h
-    |   |-- main.c
-    |   |-- main.h
-    |   |-- Makefile
-    |   |-- player.c
-    |   |-- player.h
-    |   |-- search.c
-    |   `-- search.h
-    |-- db                          <------------- databses init scripts and test data.
-    |   |-- init.sql
-    |   `-- insert.sql
-    |-- include
-    |   |-- common.h
-    |   
-    `-- server                     <-------------- source of server.
-        |-- Makefile
-        |-- server.c
-        |-- server.h
-        |-- sql.c
-        `-- sql.h
+.
+├── library
+│   ├── 0000000001
+│   ├── 0000000002
+│   ├── 0000000003
+│   ├── 0000000004
+│   └── 0000000005
+├── LICENSE
+├── pic
+│   ├── fm-add.png
+│   ├── fm-like.png
+│   ├── fm-login.png
+│   ├── fm-main.png
+│   └── fm-serarch.png
+├── README.org
+├── resources
+│   └── free-music.ui
+└── src
+    ├── client
+    │   ├── mpg123_api.c
+    │   ├── client.c
+    │   ├── css-style
+    │   │   ├── cssview.css
+    │   │   ├── free-music.css
+    │   │   └── reset.css
+    │   ├── get.sh
+    │   ├── include
+    │   │   ├── client.h
+    │   │   ├── list.h
+    │   │   ├── main.h
+    │   │   ├── mpg123_api.h
+    │   │   ├── player.h
+    │   │   └── search.h
+    │   ├── list.c
+    │   ├── main.c
+    │   ├── Makefile
+    │   ├── player.c
+    │   └── search.c
+    ├── db
+    │   ├── init.sql
+    │   └── insert.sql
+    ├── include
+    │   └── common.h
+    └── server
+        ├── include
+        │   ├── server.h
+        │   └── sql.h
+        ├── Makefile
+        ├── server.c
+        └── sql.c
+
+11 directories, 38 files
 #+END_SRC
 * Setup Development Environment
 - Prepare a linux system like ubuntu 16.04

@@ -10,7 +10,7 @@ CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient -I../include -I.
 
 LIBS = $(shell $(PKG_CONFIG) --libs gtk+-3.0) -lmysqlclient
 
-SRC = main.c player.c list.c api.c client.c search.c
+SRC = main.c player.c list.c mpg123_api.c client.c search.c
 
 OBJS = $(SRC:.c=.o)
 
