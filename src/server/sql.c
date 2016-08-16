@@ -1,4 +1,4 @@
-#include "sql.h"
+#include <sql.h>
 
 MYSQL *connectp;
 MYSQL_RES *resp;

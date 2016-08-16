@@ -1,13 +1,14 @@
 #+title: Free-Music
 Free Music (FM) is a open source music player. It's a local mp3 player before version 3.In version 3, we cut the local play function.Finally, it became to a online music player.
 The development of FM is very slow, we hope more and more programmers can get involved in this project.
-Below is a introdution of this project, I hope that it is usefull.
+Below is a introduction of this project, I hope that it is usefull.
 
 * Overview
 [[./pic/fm-main.png]]
 [[./pic/fm-serarch.png]]
 [[./pic/fm-like.png]]
 [[./pic/fm-add.png]]
+[[./pic/fm-login.png]]
 * Get source code
 #+BEGIN_SRC shell
 git clone https://github.com/RainMark/Free-Music.git
@@ -53,7 +54,7 @@ Project Directory Tree
 - Prepare a linux system like ubuntu 16.04
 - Install GTK3 dev and mysqlclient dev library.
 #+BEGIN_SRC shell
-sudo apt-get install libgtk-3-dev libmysqlclient-dev mpg123
+sudo apt-get install libgtk-3-dev libmysqlclient-dev mpg123 git
 #+END_SRC
 - Install mysql server to test code.
 #+BEGIN_SRC shell
@@ -70,12 +71,17 @@ mysql -u root -p
 #+END_SRC
 - Test environment. (It's ok if compile successfully)
 #+BEGIN_SRC shell
+cd ../server
+make
+./fmd &
 cd ../client
 make
+./free-music
 #+END_SRC
+- Please look up the "get.sh" script and function "int fetch_song(const char *id);" in "client.c" in order to setup ftp server.
 
 * Start To Develop
-- Folow this link to start quickly.\\
+- Folow this link to lean gtk3 quickly.\\
   http://www.cnblogs.com/rain-blog/p/gtk3-1.html
 - Read the other source code.
 - Modify this project.

@@ -1,13 +1,9 @@
 #include <gtk/gtk.h>
-#include "list.h"
-#include "player.h"
-#include "main.h"
-#include "client.h"
-#include "search.h"
+#include <main.h>
 
 
 GtkWidget *window;
-GtkWidget *lview , *sview;  //list view and song view
+GtkWidget *lview , *sview;
 GtkListStore *lview_store;
 GtkTreeSelection * lview_selec;
 GtkWidget * statusbar;
@@ -31,7 +27,7 @@ GtkWidget *do_css_shadows (GtkWidget *do_widget)
 		GBytes *bytes;
 
 		provider = GTK_STYLE_PROVIDER (gtk_css_provider_new ());
-		gtk_css_provider_load_from_path(GTK_CSS_PROVIDER(provider), "./free-music.css", NULL);
+		gtk_css_provider_load_from_path(GTK_CSS_PROVIDER(provider), "css-style/free-music.css", NULL);
 		apply_css (window, provider);
 	}
 
@@ -152,7 +148,7 @@ gboolean DeleteEvent (GtkWidget *widget , gpointer data)
       gboolean ret;
 
       dialog = gtk_message_dialog_new(GTK_WINDOW(widget), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                  GTK_MESSAGE_INFO, GTK_BUTTONS_OK_CANCEL, "真的要退出吗？");
+                  GTK_MESSAGE_INFO, GTK_BUTTONS_OK_CANCEL, "Quit？");
 
       result = gtk_dialog_run (GTK_DIALOG(dialog));
 

@@ -1,6 +1,6 @@
 /*By Rain 2016.2.12*/
 
-#include "api.h"
+#include <mpg123_api.h>
 
 static int include_key( char *target , char *key )
 {

@@ -1,8 +1,8 @@
-#include "list.h"
-#include "main.h"
-#include "player.h"
-#include "client.h"
-#include "search.h"
+#include <list.h>
+#include <main.h>
+#include <player.h>
+#include <client.h>
+#include <search.h>
 #include <common.h>
 
 GtkWidget *search_entry;

@@ -21,13 +21,16 @@ insert into song (song_id,song_name,song_path,song_ftype,song_style,song_singer)
 ('0000000001','红蔷薇白玫瑰',NULL,'mp3','流行','0000000001');
 
 insert into song (song_id,song_name,song_path,song_ftype,song_style,song_singer) values
-('0000000002','Make It Big',NULL,'mp3','流行','0000000002');
+('0000000002','心电感应808',NULL,'mp3','流行','0000000002');
 
 insert into song (song_id,song_name,song_path,song_ftype,song_style,song_singer) values
 ('0000000003','Game Over',NULL,'mp3','流行','0000000001');
 
 insert into song (song_id,song_name,song_path,song_ftype,song_style,song_singer) values
 ('0000000004','Complicated',NULL,'mp3','流行','0000000003');
+
+insert into song (song_id,song_name,song_path,song_ftype,song_style,song_singer) values
+('0000000005','偶尔',NULL,'mp3','流行','0000000001');
 
 -- songs_of_lists
 insert into songs_of_lists (list_id,song_id) values ('0000000001','0000000001');

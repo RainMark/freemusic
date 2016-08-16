@@ -1,0 +1,35 @@
+/* You can edit the text in this window to change the
+ * appearance of this Window.
+ * Be careful, if you screw it up, nothing might be visible
+ * anymore. :)
+ */
+
+/* This CSS resets all properties to their defaults values
+ *    and overrides all user settings and the theme in use */
+@import url("cssview.css");
+
+/* Get a nice background for the window */
+
+button {
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 250ms ease-in;
+  border: 1px transparent solid;
+}
+
+button:hover {
+  text-shadow: 3px 3px 5px alpha(green, 0.75);
+  -gtk-icon-shadow: 3px 3px 5px alpha(black, 0.75);
+  box-shadow: 3px 3px 5px alpha(orange, 0.5) inset;
+  border: solid 1px alpha(black, 0.75);
+}
+
+button:active {
+  padding: 11px 9px 9px 11px;
+  text-shadow: 1px 1px 2.5px alpha(black, 0.6);
+  -gtk-icon-shadow: 1px 1px 2.5px alpha(black, 0.6);
+}
+
+
+

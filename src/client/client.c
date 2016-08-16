@@ -1,5 +1,4 @@
-#include "client.h"
-#include "list.h"
+#include <client.h>
 
 int server = 0;
 int online = 0;
@@ -407,8 +406,8 @@ int fetch_song(const char *id)
 	char buf[BUF_SIZE];
 	int ret;
 	char *server_user = "rain";
-	char *server_pass = "zby2010";
-	char *server_dir = "~/flib";
+	char *server_pass = "rain";
+	char *server_dir = "~/library";
 	char *cache_dir = "/tmp";
 
 	sprintf(buf, "%s/%s", cache_dir, id);

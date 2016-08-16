@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "player.h"
-#include "list.h"
-#include "main.h"
+#include <player.h>
+#include <list.h>
+#include <main.h>
 
 ReadySong readysong;
 enum _playmode playmode;

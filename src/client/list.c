@@ -1,8 +1,5 @@
-#include <string.h>
-#include <stdlib.h>
-
-#include "list.h"
-#include "main.h"
+#include <list.h>
+#include <main.h>
 
 int get_info_from_lview(GtkTreeIter *iter, gchar **name, gint *id)
 {

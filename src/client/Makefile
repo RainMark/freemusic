@@ -6,7 +6,7 @@ CC ?= gcc
 
 PKG_CONFIG = $(shell which pkg-config)
 
-CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient -I../include
+CFLAGS = $(shell $(PKG_CONFIG) --cflags gtk+-3.0) -lmysqlclient -I../include -I./include
 
 LIBS = $(shell $(PKG_CONFIG) --libs gtk+-3.0) -lmysqlclient
 
@@ -17,10 +17,12 @@ OBJS = $(SRC:.c=.o)
 all: free-music
 
 %.o: %.c
-	$(CC) -c $< $(CFLAGS) -rdynamic -o $(@F)
+	@$(CC) -c $< $(CFLAGS) -rdynamic -o $(@F)
+	@echo "cc $< -o $@"
 
 free-music: $(OBJS)
-	$(CC) $(OBJS) $(LIBS) -rdynamic -o $(@F)
+	@$(CC) $(OBJS) $(LIBS) -rdynamic -o $(@F)
+	@echo "ld $(OBJS) -o $@"
 
 .PHONY: clean install uninstall
 
