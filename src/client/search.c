@@ -145,9 +145,9 @@ int clicked_add_search_to_list(GtkWidget *bt, gpointer data)
 		goto do_free;
 
 	printf("%s %s\n", lists[lid].id, sid);
-	// add_online_song_to_list(lists[lid].id, sid);
-	// list_store_clear(lid);
-	// sync_online_list(lid);
+	add_online_song_to_list(lists[lid].id, sid);
+	list_store_clear(lid);
+	sync_online_list(lid);
 	// gtk_tree_view_set_model(GTK_TREE_VIEW(sview), GTK_TREE_MODEL(lists[lid].store));
 
 do_free:
