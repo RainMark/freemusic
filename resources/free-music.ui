@@ -96,7 +96,6 @@
           <object class="GtkGrid" id="grid5">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkStackSwitcher" id="stackswitcher1">
                 <property name="visible">True</property>
@@ -238,7 +237,6 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="image">refresh</property>
-                                <property name="xalign">0.51999998092651367</property>
                               </object>
                               <packing>
                                 <property name="left_attach">2</property>
@@ -247,8 +245,8 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
@@ -340,9 +338,10 @@
                       <object class="GtkButtonBox" id="buttonbox2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_right">90</property>
+                        <property name="has_default">True</property>
+                        <property name="margin_right">76</property>
                         <property name="baseline_position">top</property>
-                        <property name="layout_style">spread</property>
+                        <property name="layout_style">expand</property>
                         <child>
                           <object class="GtkButton" id="button1">
                             <property name="visible">True</property>
@@ -427,7 +426,7 @@
                             <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="pack_type">end</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                             <property name="non_homogeneous">True</property>
                           </packing>
                         </child>
@@ -442,7 +441,7 @@
                             <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="pack_type">end</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                             <property name="non_homogeneous">True</property>
                           </packing>
                         </child>
