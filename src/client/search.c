@@ -81,3 +81,79 @@ void search_song_show(struct song_st *sst, int n)
 	}
 	gtk_tree_view_set_model(GTK_TREE_VIEW(search_view), GTK_TREE_MODEL(search_store));
 }
+
+int get_info_from_search_view(GtkTreeIter *iter , gchar **name , gchar **id)
+{
+	GtkTreeSelection *select;
+	GtkTreeModel *model;
+
+	select = gtk_tree_view_get_selection(GTK_TREE_VIEW(search_view));
+	if(!gtk_tree_selection_get_selected(select, &model, iter))
+		return -1;
+
+	gtk_tree_model_get(model, iter, 0, name, 3, id, -1);
+	printf("Search: %s %s\n", *name, *id);
+
+	return 0;
+}
+
+int clicked_add_search_to_list(GtkWidget *bt, gpointer data)
+{
+	GtkTreeIter iter;
+	GtkWidget *combo;
+	GtkWidget *dialog;
+	GtkWidget *dialog_area;
+	GtkWidget *vbox;
+	gchar *sname, *sid, *lname;
+	gint lid, result, i;
+
+	if(get_info_from_search_view(&iter , &sname , &sid))
+		return 0;
+
+	combo = gtk_combo_box_text_new();
+	for(i = 0 ; i < listssum ; i++)
+		gtk_combo_box_text_insert_text(GTK_COMBO_BOX_TEXT(combo), 0, lists[i].listname);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), 0);
+
+	dialog = gtk_dialog_new_with_buttons("Add to", GTK_WINDOW(window),
+				GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				"_OK", GTK_RESPONSE_OK,
+				"_Cancel", GTK_RESPONSE_CANCEL,
+				NULL);
+	dialog_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+
+	vbox = gtk_box_new( GTK_ORIENTATION_VERTICAL, 0 );
+	gtk_box_pack_start(GTK_BOX( vbox ), combo, FALSE, FALSE, 20);
+	gtk_box_pack_start(GTK_BOX(dialog_area), vbox, TRUE, TRUE, 0);
+	gtk_container_set_border_width(GTK_CONTAINER(vbox), 15);
+	gtk_widget_set_size_request(dialog , 250 , 100);
+	gtk_widget_show_all(dialog);
+
+	result = gtk_dialog_run( GTK_DIALOG(dialog) );
+
+	if(GTK_RESPONSE_OK != result)
+		goto do_free;
+
+
+	lname = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(combo));
+
+	if(!lname || !strlen(lname))
+		goto do_free;
+
+	lid = find_list_id_by_name(lname);
+	if (lid < 0)
+		goto do_free;
+
+	printf("%s %s\n", lists[lid].id, sid);
+	// add_online_song_to_list(lists[lid].id, sid);
+	// list_store_clear(lid);
+	// sync_online_list(lid);
+	// gtk_tree_view_set_model(GTK_TREE_VIEW(sview), GTK_TREE_MODEL(lists[lid].store));
+
+do_free:
+	g_free(sname);
+	g_free(sid);
+	release_combo_text(GTK_COMBO_BOX_TEXT(combo));
+	gtk_widget_destroy(dialog);
+	return 0;
+}

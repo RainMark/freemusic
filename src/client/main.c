@@ -50,7 +50,7 @@ int main ( int argc , char *argv[] )
 	window = GTK_WIDGET( gtk_builder_get_object( builder , "window" ) );
 	gtk_window_set_default_size(GTK_WINDOW(window), 680, 405);
 	gtk_builder_connect_signals( builder , NULL );
-	do_css_shadows(window);
+	// do_css_shadows(window);
 
 	/* init player,songs,tree models and so on. */
 	get_object_from_builder();

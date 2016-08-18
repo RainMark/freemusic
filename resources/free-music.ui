@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.19.0 -->
+<!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.16"/>
   <object class="GtkImage" id="add">
@@ -115,7 +115,8 @@
               <object class="GtkButtonBox" id="buttonbox4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="layout_style">end</property>
+                <property name="margin_left">130</property>
+                <property name="layout_style">expand</property>
                 <child>
                   <object class="GtkButton" id="button9">
                     <property name="visible">True</property>
@@ -246,7 +247,7 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
                           </packing>
@@ -339,8 +340,9 @@
                       <object class="GtkButtonBox" id="buttonbox2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_right">74</property>
+                        <property name="margin_right">90</property>
                         <property name="baseline_position">top</property>
+                        <property name="layout_style">spread</property>
                         <child>
                           <object class="GtkButton" id="button1">
                             <property name="visible">True</property>
@@ -397,7 +399,7 @@
                       <object class="GtkButtonBox" id="buttonbox3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="layout_style">spread</property>
+                        <property name="layout_style">expand</property>
                         <child>
                           <object class="GtkButton" id="button4">
                             <property name="visible">True</property>
@@ -494,7 +496,8 @@
                     <property name="can_focus">False</property>
                     <property name="margin_left">50</property>
                     <property name="margin_right">50</property>
-                    <property name="margin_top">17</property>
+                    <property name="margin_top">5</property>
+                    <property name="column_homogeneous">True</property>
                     <child>
                       <object class="GtkSearchEntry" id="searchentry">
                         <property name="visible">True</property>
@@ -519,7 +522,8 @@
                         <property name="can_focus">False</property>
                         <property name="margin_left">7</property>
                         <property name="margin_right">10</property>
-                        <property name="layout_style">end</property>
+                        <property name="homogeneous">True</property>
+                        <property name="layout_style">start</property>
                         <child>
                           <object class="GtkButton" id="search2">
                             <property name="visible">True</property>
@@ -545,8 +549,8 @@
                             <property name="image">cancel</property>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
                             <property name="position">1</property>
                             <property name="non_homogeneous">True</property>
                           </packing>
@@ -557,12 +561,13 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="halign">start</property>
-                            <property name="margin_left">137</property>
+                            <property name="margin_left">135</property>
                             <property name="image">add_search</property>
+                            <signal name="clicked" handler="clicked_add_search_to_list" swapped="no"/>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
                             <property name="pack_type">end</property>
                             <property name="position">2</property>
                             <property name="non_homogeneous">True</property>
@@ -587,17 +592,12 @@
                     <property name="can_focus">True</property>
                     <property name="margin_left">20</property>
                     <property name="margin_right">20</property>
-                    <property name="margin_top">5</property>
                     <property name="shadow_type">in</property>
                     <property name="min_content_height">319</property>
                     <child>
                       <object class="GtkTreeView" id="searchview">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="margin_left">10</property>
-                        <property name="margin_right">10</property>
-                        <property name="margin_top">10</property>
-                        <property name="margin_bottom">10</property>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection" id="treeview-selection5"/>
                         </child>
