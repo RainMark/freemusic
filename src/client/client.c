@@ -115,6 +115,7 @@ int clicked_login(GtkWidget *bt, gpointer data)
 	gtk_box_pack_start(GTK_BOX( vbox ) , hbox , TRUE ,TRUE , 10);
 
 	pass_entry  = gtk_entry_new();
+	gtk_entry_set_visibility(GTK_ENTRY(pass_entry), 0);
 	label  = gtk_label_new("Pass : ");
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 10);
@@ -137,10 +138,8 @@ int clicked_login(GtkWidget *bt, gpointer data)
 			continue;
 		}
 
-		if (!gtk_entry_get_text_length(GTK_ENTRY(pass_entry))) {
-			gtk_entry_set_text(GTK_ENTRY(pass_entry), "Invalid length");
+		if (!gtk_entry_get_text_length(GTK_ENTRY(pass_entry)))
 			continue;
-		}
 
 		user = gtk_entry_get_text(GTK_ENTRY(user_entry));
 		pass = gtk_entry_get_text(GTK_ENTRY(pass_entry));
