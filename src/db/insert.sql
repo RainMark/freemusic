@@ -3,10 +3,10 @@
 use free_music;
 -- user table
 
-insert into `user` (user_id,user_passwd,user_nick) values ('0000000001','rain','rain');
+insert into `user` (user_email,user_passwd,user_nick) values ('rain.by.zhou@gmail.com','password','rain');
 
 -- list table
-insert into list (list_id,list_name,owner_id) values ('0000000001','我喜欢','0000000001');
+insert into list (list_id,list_name,owner_email) values ('0000000001','我喜欢','rain.by.zhou@gmail.com');
 
 -- singer table
 insert into singer (singer_id,singer_name,singer_national,singer_age,singer_height,singer_weight) values

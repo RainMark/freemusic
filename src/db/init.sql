@@ -3,6 +3,8 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
+-- Edited by RainMark
+
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -62,10 +64,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `free_music`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `free_music`.`user` (
-  `user_id` CHAR(10) NOT NULL,
+  `user_email` VARCHAR(128) NOT NULL,
   `user_passwd` VARCHAR(128) NOT NULL,
   `user_nick` VARCHAR(512) NULL,
-  PRIMARY KEY (`user_id`))
+  PRIMARY KEY (`user_email`))
 ENGINE = InnoDB;
 
 
@@ -77,12 +79,12 @@ DROP TABLE IF EXISTS `free_music`.`list` ;
 CREATE TABLE IF NOT EXISTS `free_music`.`list` (
   `list_id` CHAR(10) NOT NULL,
   `list_name` VARCHAR(512) NOT NULL,
-  `owner_id` CHAR(10) NULL,
+  `owner_email` VARCHAR(128) NULL,
   PRIMARY KEY (`list_id`),
-  INDEX `ower_id_idx` (`owner_id` ASC),
-  CONSTRAINT `ower_id`
-    FOREIGN KEY (`owner_id`)
-    REFERENCES `free_music`.`user` (`user_id`)
+  INDEX `ower_email_idx` (`owner_email` ASC),
+  CONSTRAINT `ower_email`
+    FOREIGN KEY (`owner_email`)
+    REFERENCES `free_music`.`user` (`user_email`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;
