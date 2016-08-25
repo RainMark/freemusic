@@ -4,6 +4,7 @@ import sys
 import os
 import socket
 import signal
+from db import database as mdb
 
 sys.path.append(os.path.abspath(os.path.curdir) + "/../../include")
 from data_type import type_dict
@@ -15,6 +16,7 @@ class music_srv:
         client_address = ['0.0.0.0', 6666]
         socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         message = bytearray(1024)
+        db = mdb()
 
         def __init__(self):
                 self.socket.bind((self.host, self.port))
@@ -54,16 +56,28 @@ class music_srv:
                 self.socket.sendto(send_buffer, self.client_address)
 
         def login(self, email, password):
-                return "login_success"
+                key =self.db.get_password_by_email(email)
+                if None != key and key == password:
+                        return "login_success"
+                else:
+                        return "login_failed"
         
         def register(self, email, password, nick):
-                return "register_success"
+                res = self.db.insert_new_user(email, password, nick)
+                if True == res:
+                        return "register_success"
+                else:
+                        return "register_failed"
 
         def send_user_list(self, email):
                 return "fetch_end"
+                # Todo
 
         def user_list_new(self, email, list_name):
+                print(list_name)
+                # Todo
                 return "new_list_success"
 
-srv = music_srv()
-srv.run()
+if __name__ == "__main__":
+        srv = music_srv()
+        srv.run()
