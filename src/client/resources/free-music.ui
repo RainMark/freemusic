@@ -27,20 +27,20 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-media-previous</property>
   </object>
-  <object class="GtkImage" id="loginon">
+  <object class="GtkImage" id="login">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-home</property>
+    <property name="stock">gtk-dialog-authentication</property>
+  </object>
+  <object class="GtkImage" id="logout">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-quit</property>
   </object>
   <object class="GtkImage" id="model">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-cdrom</property>
-  </object>
-  <object class="GtkImage" id="newuser">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-edit</property>
   </object>
   <object class="GtkImage" id="next">
     <property name="visible">True</property>
@@ -56,6 +56,11 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-refresh</property>
+  </object>
+  <object class="GtkImage" id="register">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-orientation-portrait</property>
   </object>
   <object class="GtkImage" id="search">
     <property name="visible">True</property>
@@ -74,8 +79,7 @@
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
     <property name="gravity">center</property>
-    <signal name="delete-event" handler="DeleteEvent" swapped="no"/>
-    <signal name="destroy" handler="CloseApp" swapped="no"/>
+    <signal name="destroy" handler="hanlder_exit" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -158,10 +162,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="image">loginon</property>
-                    <property name="image_position">right</property>
-                    <property name="always_show_image">True</property>
-                    <signal name="clicked" handler="clicked_login" swapped="no"/>
+                    <property name="image">register</property>
+                    <signal name="clicked" handler="hanlder_register" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -176,13 +178,32 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="image">newuser</property>
+                    <property name="image">logout</property>
+                    <signal name="clicked" handler="hanlder_logout" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="pack_type">end</property>
                     <property name="position">1</property>
+                    <property name="non_homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="image">login</property>
+                    <property name="image_position">right</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="hanlder_login" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">2</property>
                     <property name="non_homogeneous">True</property>
                   </packing>
                 </child>
@@ -247,7 +268,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="image">add</property>
-                                <signal name="clicked" handler="clicked_new_list" swapped="no"/>
+                                <signal name="clicked" handler="hanlder_user_list_new" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -261,7 +282,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="image">delete</property>
-                                <signal name="clicked" handler="clicked_rm_list" swapped="no"/>
+                                <signal name="clicked" handler="hanlder_user_list_remove" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -275,6 +296,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="image">refresh</property>
+                                <signal name="clicked" handler="hanlder_user_list_refresh" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -307,7 +329,7 @@
                                 <property name="enable_grid_lines">horizontal</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection" id="lview_select">
-                                    <signal name="changed" handler="on_change_list" swapped="no"/>
+                                    <signal name="changed" handler="hanlder_list_change" swapped="no"/>
                                   </object>
                                 </child>
                               </object>
@@ -357,7 +379,7 @@
                             <property name="hscroll_policy">natural</property>
                             <property name="vscroll_policy">natural</property>
                             <property name="enable_grid_lines">horizontal</property>
-                            <signal name="row-activated" handler="Double_clicked" swapped="no"/>
+                            <signal name="row-activated" handler="hanlder_list_song_double_clicked" swapped="no"/>
                             <child internal-child="selection">
                               <object class="GtkTreeSelection"/>
                             </child>
@@ -395,7 +417,7 @@
                             <property name="receives_default">True</property>
                             <property name="image">last</property>
                             <property name="relief">half</property>
-                            <signal name="clicked" handler="clicked_previous" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_play_last" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -410,7 +432,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="image">play</property>
-                            <signal name="clicked" handler="clicked_play" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_play_pause" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -425,7 +447,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="image">next</property>
-                            <signal name="clicked" handler="clicked_next" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_play_next" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -483,7 +505,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="image">addto</property>
-                            <signal name="clicked" handler="clicked_add_song_to_list" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_list_song_insert" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -585,8 +607,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="margin_left">10</property>
                             <property name="image">search</property>
-                            <signal name="clicked" handler="clicked_search" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_search_song" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -613,7 +636,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="image">add_search</property>
-                            <signal name="clicked" handler="clicked_add_search_to_list" swapped="no"/>
+                            <signal name="clicked" handler="hanlder_list_song_insert" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">True</property>

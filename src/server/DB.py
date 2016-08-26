@@ -11,12 +11,13 @@ class database:
         def __init__(self):
                 pass
                 # Todo
+
         def close(self):
             self.db.close()
 
         def check_sql_code(self, sql):
                 print(sql)
-        
+
         def get_password_by_email(self, email):
                 'Return password string if email in database. else return None.'
 
@@ -29,7 +30,7 @@ class database:
                         return None
                 else:
                         return data[0]
-        
+
         def insert_new_user(self, email, password, nick):
                 'Return 0 if insert successfull.'
 
@@ -46,13 +47,13 @@ class database:
                 except mariadb.Error as error:
                         print("Insert Error: {}".format(error))
                         return False
-                
+
                 self.db.commit()
                 return True
-        
+
         def get_list_by_email(self, email):
                 'Return a list of tuples. When no rows are available, it returns an empty list.'
-                
+
                 sql = "select list_id,list_name from list where owner_email=\'{}\'".format(email)
                 self.check_sql_code(sql)
                 self.cursor.execute(sql)
@@ -64,7 +65,7 @@ class database:
                         data = self.cursor.fetchmany()
 
                 return res
-        
+
         # Todo
 
 if __name__ == "__main__":

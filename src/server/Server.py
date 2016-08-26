@@ -4,10 +4,10 @@ import sys
 import os
 import socket
 import signal
-from db import database as mdb
+from DB import database as mdb
 
 sys.path.append(os.path.abspath(os.path.curdir) + "/../lib")
-from data_type import type_dict
+from DataType import type_dict
 
 class music_srv:
         "Music Server class."
@@ -52,7 +52,7 @@ class music_srv:
                                 self.response(result)
                         else:
                                 pass
-                                
+
         def response(self, result):
                 send_buffer = result.encode('utf-8')
                 self.socket.sendto(send_buffer, self.client_address)
@@ -63,7 +63,7 @@ class music_srv:
                         return "login_success"
                 else:
                         return "login_failed"
-        
+
         def register(self, email, password, nick):
                 res = self.db.insert_new_user(email, password, nick)
                 if True == res:
