@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -21,5 +21,6 @@ class ui:
         def main(self):
                 Gtk.main()
 
-ui = ui()
-ui.main()
+if __name__ == "__main__":
+        ui = ui()
+        ui.main()

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 type_dict = {   'login':                        '0001',
                 'login_success':                '0002',

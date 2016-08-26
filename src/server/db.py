@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import mysql.connector as mariadb
 
@@ -11,6 +11,8 @@ class database:
         def __init__(self):
                 pass
                 # Todo
+        def close(self):
+            self.db.close()
 
         def check_sql_code(self, sql):
                 print(sql)

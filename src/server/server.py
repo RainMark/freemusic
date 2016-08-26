@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import os
@@ -24,6 +24,8 @@ class music_srv:
 
         def kill(self, signum, frame):
                 self.socket.close()
+                self.db.close()
+                print("Exit safely.")
                 sys.exit()
 
         def run(self):
@@ -79,5 +81,6 @@ class music_srv:
                 return "new_list_success"
 
 if __name__ == "__main__":
+        print("Server listening...")
         srv = music_srv()
         srv.run()
