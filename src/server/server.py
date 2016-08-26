@@ -6,7 +6,7 @@ import socket
 import signal
 from db import database as mdb
 
-sys.path.append(os.path.abspath(os.path.curdir) + "/../../include")
+sys.path.append(os.path.abspath(os.path.curdir) + "/../lib")
 from data_type import type_dict
 
 class music_srv:

@@ -13,7 +13,7 @@ class ui:
         builder = Gtk.Builder()
 
         def __init__(self):
-                self.builder.add_from_file("../../../resources/free-music.ui")
+                self.builder.add_from_file("resources/free-music.ui")
                 self.builder.connect_signals(hanlder())
                 window = self.builder.get_object("window")
                 window.show_all()
