@@ -18,7 +18,7 @@ class hanlder:
                 # Todo
 
         def hanlder_register(self, button):
-                print("You clicked ", self.hanlder_register.__name__)
+                app.register()
                 # Todo
 
         def hanlder_user_list_refresh(self, button):
