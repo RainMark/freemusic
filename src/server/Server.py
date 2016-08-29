@@ -15,7 +15,6 @@ class music_srv:
         host = "127.0.0.1"
         client_address = ['0.0.0.0', 6666]
         socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        message = bytearray(1024)
         db = mdb()
 
         def __init__(self):
@@ -30,11 +29,12 @@ class music_srv:
 
         def run(self):
                 while True:
-                        nbytes, address = self.socket.recvfrom_into(self.message)
+                        message = bytearray(1024)
+                        nbytes, address = self.socket.recvfrom_into(message)
                         if not nbytes:
                                 continue
                         self.client_address = address
-                        data = self.message.decode('utf-8')
+                        data = message.decode('utf-8')
                         data = data.split('\0')[0]
                         data_list = data.split('\r\n')
 
@@ -52,6 +52,7 @@ class music_srv:
                                 self.response(result)
                         else:
                                 pass
+                        del message
 
         def response(self, result):
                 send_buffer = result.encode('utf-8')
