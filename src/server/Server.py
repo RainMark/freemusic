@@ -72,8 +72,11 @@ class music_srv:
                         return "register_failed"
 
         def send_user_list(self, email):
+                ls = self.db.get_list_by_email(email)
+                for one_list in ls:
+                        message = one_list[0] + '\r\n' + one_list[1] # list_id + list_name.
+                        self.socket.sendto(message.encode('utf-8'), self.client_address)
                 return "fetch_end"
-                # Todo
 
         def user_list_new(self, email, list_name):
                 print(list_name)

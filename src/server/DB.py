@@ -22,7 +22,7 @@ class database:
                 'Return password string if email in database. else return None.'
 
                 sql = "select user_passwd from user where user_email=\'{}\'".format(email)
-                self.check_sql_code(sql)
+                #self.check_sql_code(sql)
                 self.cursor.execute(sql)
                 data = self.cursor.fetchone()
 
@@ -40,7 +40,7 @@ class database:
                 sql = """insert into user(user_email, user_passwd, user_nick)
                         values(\'{}\', \'{}\', \'{}\')""".format(email, password, nick)
 
-                self.check_sql_code(sql)
+                #self.check_sql_code(sql)
 
                 try:
                         self.cursor.execute(sql)
@@ -55,7 +55,7 @@ class database:
                 'Return a list of tuples. When no rows are available, it returns an empty list.'
 
                 sql = "select list_id,list_name from list where owner_email=\'{}\'".format(email)
-                self.check_sql_code(sql)
+                #self.check_sql_code(sql)
                 self.cursor.execute(sql)
 
                 res = []
