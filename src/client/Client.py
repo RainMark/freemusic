@@ -9,15 +9,21 @@ class hanlder:
         def hanlder_exit(self, *args):
                 Gtk.main_quit(*args)
 
+        def hanlder_pop_menu(self, button):
+                app.pop_menu()
+
         def hanlder_login(self, button):
+                app.pop_menu_hide()
                 print("You clicked ", self.hanlder_login.__name__)
                 # Todo
 
         def hanlder_logout(self, button):
+                app.pop_menu_hide()
                 print("You clicked ", self.hanlder_logout.__name__)
                 # Todo
 
         def hanlder_register(self, button):
+                app.pop_menu_hide()
                 app.register()
                 # Todo
 

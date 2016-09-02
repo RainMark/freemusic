@@ -17,6 +17,14 @@ class UI:
         def bind_hanlder(self, hanlder):
                 self.builder.connect_signals(hanlder)
 
+        def pop_menu(self):
+                popover = self.builder.get_object("popmenu")
+                popover.show_all()
+
+        def pop_menu_hide(self):
+                popover = self.builder.get_object("popmenu")
+                popover.hide()
+
         def register(self):
                 dialog_builder = Gtk.Builder()
                 dialog_builder.add_from_file("resources/register.ui")
